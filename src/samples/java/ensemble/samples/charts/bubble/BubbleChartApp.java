@@ -140,8 +140,8 @@ public class BubbleChartApp extends Application {
         primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.ESCAPE) {
-                    primaryStage.close();
+                if (event.getCode() == KeyCode.F1) {
+                    primaryStage.setFullScreen(true);
                 }
             }
         });

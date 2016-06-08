@@ -47,7 +47,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
- * A sample that demonstrates an animated rotation of 3D cubes. 
+ * A sample that demonstrates an animated rotation of 3D cubes.
  *
  * @sampleName 3D Cubes
  * @preview preview.png
@@ -86,13 +86,13 @@ public class CubeApp extends Application {
         animation = new Timeline();
         animation.getKeyFrames().addAll(
                 new KeyFrame(Duration.ZERO,
-                new KeyValue(c.ry.angleProperty(), 0d),
-                new KeyValue(c2.rx.angleProperty(), 0d),
-                new KeyValue(c3.rz.angleProperty(), 0d)),
+                        new KeyValue(c.ry.angleProperty(), 0d),
+                        new KeyValue(c2.rx.angleProperty(), 0d),
+                        new KeyValue(c3.rz.angleProperty(), 0d)),
                 new KeyFrame(Duration.seconds(1),
-                new KeyValue(c.ry.angleProperty(), 360d),
-                new KeyValue(c2.rx.angleProperty(), 360d),
-                new KeyValue(c3.rz.angleProperty(), 360d)));
+                        new KeyValue(c.ry.angleProperty(), 360d),
+                        new KeyValue(c2.rx.angleProperty(), 360d),
+                        new KeyValue(c3.rz.angleProperty(), 360d)));
         animation.setCycleCount(Timeline.INDEFINITE);
 
         PerspectiveCamera camera = new PerspectiveCamera(true);
@@ -100,10 +100,10 @@ public class CubeApp extends Application {
 
         Group root = new Group();
         root.getChildren().addAll(c, c2, c3);
-        
+
         SubScene subScene = new SubScene(root, 640, 480, true, SceneAntialiasing.BALANCED);
         subScene.setCamera(camera);
-        
+
         return new Group(subScene);
     }
 
@@ -121,10 +121,40 @@ public class CubeApp extends Application {
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
         play();
+
+//        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+//            @Override
+//            public void handle(KeyEvent event) {
+//
+//                switch (event.getCode().toString()) {
+//                    case "F11":
+//                        if(primaryStage.isFullScreen() == false){
+//                            primaryStage.setFullScreen(true);
+//                        } else if(primaryStage.isFullScreen() == true){
+//                            primaryStage.setFullScreen(false);
+//                            primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>(){
+//
+//                                @Override
+//                                public void handle(KeyEvent event) {
+//                                    if(event.getCode() == KeyCode.ESCAPE){
+//                                        primaryStage.close();
+//                                    }
+//                                }
+//                                
+//                            });
+//                        }
+//                        break;
+//                }
+//
+//            }
+//        });
+        
+
     }
 
     /**
      * Java main for when running without JavaFX launcher
+     *
      * @param args command line arguments
      */
     public static void main(String[] args) {

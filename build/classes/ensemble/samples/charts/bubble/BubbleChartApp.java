@@ -31,15 +31,16 @@
  */
 package ensemble.samples.charts.bubble;
 
-
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BubbleChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
 
 /**
  * An advanced bubble chart with a variety of actions and settable properties.
@@ -136,10 +137,19 @@ public class BubbleChartApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
+        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.F1) {
+                    primaryStage.setFullScreen(true);
+                }
+            }
+        });
     }
 
     /**
      * Java main for when running without JavaFX launcher
+     *
      * @param args command line arguments
      */
     public static void main(String[] args) {

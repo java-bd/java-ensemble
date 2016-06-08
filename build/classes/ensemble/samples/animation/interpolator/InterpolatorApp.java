@@ -36,9 +36,12 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.Lighting;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -153,6 +156,16 @@ public class InterpolatorApp extends Application {
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
         play();
+        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>(){
+
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode() == KeyCode.ESCAPE){
+                    primaryStage.close();
+                }
+            }
+            
+        });
     }
 
     /**

@@ -35,10 +35,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -46,6 +44,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.effect.Lighting;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -57,7 +57,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
- * A sample that demonstrates the basics of timeline creation. 
+ * A sample that demonstrates the basics of timeline creation.
  *
  * @sampleName Timeline
  * @preview preview.png
@@ -92,12 +92,11 @@ public class TimelineApp extends Application {
         //timeline.pause();
         //timeline.stop();
         //timeline.playFromStart();
-
         //add the following keyframes to the timeline
         timeline.getKeyFrames().addAll(new KeyFrame(Duration.ZERO,
                 new KeyValue(circle.translateXProperty(), 0)),
                 new KeyFrame(new Duration(4000),
-                new KeyValue(circle.translateXProperty(), 205)));
+                        new KeyValue(circle.translateXProperty(), 205)));
         root.getChildren().addAll(createNavigation(), circle);
 
         return root;
@@ -159,10 +158,16 @@ public class TimelineApp extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
+        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
+            if(event.getCode() == KeyCode.ESCAPE){
+                primaryStage.close();
+            }
+        });
     }
 
     /**
      * Java main for when running without JavaFX launcher
+     *
      * @param args command line arguments
      */
     public static void main(String[] args) {
